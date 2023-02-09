@@ -1,0 +1,74 @@
+Práctica planificion 2- Lenguaje PDDL 1
+
+Ficheros
+- 1. Definiciónd del dominio: Operadores, predicados, tipos, ...
+- 2. Definicion de una instancia del problema: Constantes, hechos y objetivos
+
+1. Dominio:
+    - Requerimientos:
+	- :strips, lenguaje básico
+	- :typing, definición de tipos en parámetros y constantes
+	- :adl, lenguaje avanzado con cuantificadores, efectos condicionales, ...
+	- :equality, uso de comparaciones de igualdad
+	- :fluents, lenguaje avanzado con funciones de coste y optimización
+    - Tipos: Tipos de las constantes/parámetros que se usaran en el problema
+    - Predicados: Predicados que representanel problema
+    - Aciones: Operaciones de planificación para resolver el problema
+
+Estructura del dominio:
+(define(domain nombredominio)
+    (:requirements :adl :typing ...)
+    (:type nombretipo1 nombretipo2 ... nombretipoN
+    
+    (:predicates		//facts
+	(pred1 ?V - tipo1)
+	(pred2 ?V - tipo2)
+	(pred... ?V - tipo...)
+	(predN ?V - tipoN)
+    )
+
+    (:action nombreaccion1
+	:parameters (?variable1 -tipoX ?variable2 - tipoY)		// parametros que se utilizan
+	:precondition (and						// precondicion para ejecutar los efectos
+			(pred1 ?V1)
+			(exists (?V3 -tipoX) (pred2 ?V3))))
+		      )
+	:effect (not(pred2 ?V2))					// efectos que se producen
+    )
+    (:action nombreaccionN
+	...
+    )
+)
+
+Que se puede poner en las precondiciones:
+	- Un predicado atómico (strips)
+	- Conjunción (and) de predicados atómicos (strips)
+	- Combinacion de condiciones con operadores lógicos (and, or, not) (adl)
+	- Fórmulas cuantificadas (forall, exists) (adl)
+Que se puede poner en los efectos:
+	- Un predicado atómico (strips)
+	- La negación de un predicado atómico (strips)
+	- La conjuncion de predicados atóicos (strips)
+	- Efectos condicionales (when) (adl)
+	- Efectos cuantificados univeralmente (forall) (adl)
+
+
+2. Problema
+	- :domain, dominio del problema
+	- :objects, constantes del problema
+	- :init, estado inicial del problema
+	- :goal, objetivo del problema
+
+Sintaxis del problema:
+(define (problem nombreproblema)
+ (:domain nombredominio)
+ (:objects obj1Tipo1 obj2Tipo1 obj3Tipo1 - tipo1
+	   obj1Tipo2 obj2Tipo2 obj3Tipo2 - tipo2
+ )
+ (:init
+	(pred1 obj1Tipo1)
+	(pred1 obj2Tipo1)
+	(pred1 obj3Tipo1)
+	(pred2 obj1Tipo2)
+	(pred2 obj2Tipo2)
+	(pred2 obj3Tipo2)

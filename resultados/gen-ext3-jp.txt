@@ -1,0 +1,46 @@
+
+ff: parsing domain file
+domain 'HOTEL' defined
+ ... done.
+ff: parsing problem file
+problem 'GEN-EXT3-JP' defined
+ ... done.
+
+
+metric established (normalized to minimize): ((1.00*[RF0](TOTAL-COST)) - () + 0.00)
+
+checking for cyclic := effects --- OK.
+
+ff: search configuration is  best-first on 1*g(s) + 5*h(s) where
+    metric is ((1.00*[RF0](TOTAL-COST)) - () + 0.00)
+
+advancing to distance:    8
+                          7
+                          6
+                          5
+                          4
+                          3
+                          2
+                          1
+                          0
+
+ff: found legal plan as follows
+
+step    0: RESERVAR-HABITACION A02 R03
+        1: RESERVAR-HABITACION A03 R04
+        2: RESERVAR-HABITACION A03 R01
+        3: RESERVAR-HABITACION A01 R02
+        4: DESCARTE-RESERVA R07
+        5: RESERVAR-HABITACION A03 R06
+        6: RESERVAR-HABITACION A01 R05
+        7: REACH-GOAL
+     
+
+time spent:    0.00 seconds instantiating 0 easy, 411 hard action templates
+               0.00 seconds reachability analysis, yielding 154 facts and 539 actions
+               0.00 seconds creating final representation with 108 relevant facts, 1 relevant fluents
+               0.00 seconds computing LNF
+               0.00 seconds building connectivity graph
+               0.02 seconds searching, evaluating 525 states, to a max depth of 0
+               0.02 seconds total time
+
